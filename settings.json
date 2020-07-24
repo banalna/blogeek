@@ -1,0 +1,20 @@
+{
+    "name": "blogeek",
+    "registry": "docker-username",
+    "version": "1.0.0",
+    "build": "1",
+    
+    "MYSQL_DATABASE":"blogeek",
+    "MYSQL_USER":"blogeek",
+    "MYSQL_PASSWORD":"pass-for-db",
+
+    "SECRET_KEY":"over-secret-key",
+    "MS_TRANSLATOR_KEY":"Translation-service-API-key",
+    "MAIL_SERVER":"smtp-you-server",  
+    "MAIL_PORT":587, 
+    "MAIL_USE_TLS":true, 
+    "MAIL_USERNAME":"you-email",  
+    "MAIL_PASSWORD":"email-pass",
+    "DATABASE_URL":"mysql+pymysql://blogeek:pass-for-db@dbserver/blogeek" ,
+    "ELASTICSEARCH_URL":"http://elasticsearch:9200"
+}
