@@ -6,34 +6,37 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <link rel="icon" href="{{url_for('static', filename='icon/favicon.ico')}}">
-        {% block styles %}
-            <!-- Bootstrap CSS -->
-            {{ bootstrap.load_css(version='4.5.0') }}
-            <link rel="stylesheet" href="{{url_for('static', filename='bootstrap.css')}}">
+            {% block styles %}
+                <!-- Bootstrap CSS -->
+                {{ bootstrap.load_css(version='4.5.0') }}
+                <link rel="stylesheet" href="{{url_for('static', filename='bootstrap.css')}}">
+        
+            {% endblock %}
+        
+            {% block scripts %}
+                <!-- Optional JavaScript -->
+                {{ bootstrap.load_js(version='4.5.0', jquery_version='3.5.1', popper_version='1.16.0', with_jquery=True, with_popper=True) }}
+                {{ moment.include_moment() }}
+                {{ moment.lang(g.locale) }}
+                
+                <script src="{{ url_for('static', filename='js/popup.js') }}"></script>
 
-        {% endblock %}
-
-        {% block scripts %}
-            <!-- Optional JavaScript -->
-            {{ bootstrap.load_js(version='4.5.0', jquery_version='3.5.1', popper_version='1.16.0', with_jquery=True, with_popper=True) }}
-            {{ moment.include_moment() }}
-            {{ moment.lang(g.locale) }}
-
-            <script>
-                function translate(sourceElem, destElem, sourceLang, destLang) {
-                    $(destElem).html('<img src="{{ url_for('static', filename='loading.gif') }}">');
-                    $.post('/translate', {
-                        text: $(sourceElem).text(),
-                        source_language: sourceLang,
-                        dest_language: destLang
-                    }).done(function(response) {
-                        $(destElem).text(response['text'])
-                    }).fail(function() {
-                        $(destElem).text("{{ _('Error: Could not contact server.') }}");
-                    });
-                }
-            </script>            
-        {% endblock %}
+                <script>
+                    function translate(sourceElem, destElem, sourceLang, destLang) {
+                        $(destElem).html('<img src="{{ url_for('static', filename='loading.gif') }}">');
+                        $.post('/translate', {
+                            text: $(sourceElem).text(),
+                            source_language: sourceLang,
+                            dest_language: destLang
+                        }).done(function(response) {
+                            $(destElem).text(response['text'])
+                        }).fail(function() {
+                            $(destElem).text("{{ _('Error: Could not contact server.') }}");
+                        });
+                    }
+                </script>  
+        
+            {% endblock %}
 
             <title>
                 {% if title %}{{ title }} - Blogeek{% else %}{{ _('Welcome to ') }} Blogeek {% endif %}
