@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-07-23 05:04+0300\n"
+"POT-Creation-Date: 2020-07-25 03:54+0300\n"
 "PO-Revision-Date: 2020-07-22 02:34+0300\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: ru\n"
@@ -23,15 +23,15 @@ msgstr ""
 msgid "Please log in to access this page."
 msgstr "Пожалуйста, авторизируйтесь, чтобы получить доступ к этой странице."
 
-#: app/translate.py:12
+#: app/translate.py:11
 msgid "Error: the translation service is not configured."
 msgstr "Ошибка: служба перевода не настроена."
 
-#: app/translate.py:32
+#: app/translate.py:31
 msgid "Error: the translation service failed."
 msgstr "Ошибка: не удалось выполнить перевод."
 
-#: app/auth/forms.py:11 app/auth/forms.py:18 app/main/forms.py:24
+#: app/auth/forms.py:11 app/auth/forms.py:18 app/main/forms.py:29
 msgid "Username"
 msgstr "Имя пользователя"
 
@@ -43,7 +43,7 @@ msgstr "Пароль"
 msgid "Remember Me"
 msgstr "Запомнить меня"
 
-#: app/auth/forms.py:14
+#: app/auth/forms.py:14 app/templates/auth/login.html:5
 msgid "Sign In"
 msgstr "Войти"
 
@@ -55,11 +55,11 @@ msgstr "Email"
 msgid "Repeat Password"
 msgstr "Повторите пароль"
 
-#: app/auth/forms.py:24
+#: app/auth/forms.py:24 app/templates/auth/register.html:5
 msgid "Register"
 msgstr "Регистрация"
 
-#: app/auth/forms.py:29 app/main/forms.py:36
+#: app/auth/forms.py:29 app/main/forms.py:41
 msgid "Please use a different username."
 msgstr "Пожалуйста, используйте другое имя пользователя."
 
@@ -87,19 +87,24 @@ msgstr "Проверьте свою электронную почту для п�
 msgid "Your password has been reset."
 msgstr "Your password has been reset."
 
-#: app/main/forms.py:13 app/main/routes.py:42 app/templates/base.html:79
-msgid "Search"
-msgstr "Поиск"
+#: app/main/forms.py:13
+msgid "Message"
+msgstr "Сообщение"
 
-#: app/main/forms.py:25
-msgid "About me"
-msgstr "Обо мне"
-
-#: app/main/forms.py:26 app/main/forms.py:41 app/main/forms.py:45
+#: app/main/forms.py:14 app/main/forms.py:31 app/main/forms.py:46
+#: app/main/forms.py:50
 msgid "Submit"
 msgstr "Отправить"
 
-#: app/main/forms.py:40
+#: app/main/forms.py:18 app/main/routes.py:42 app/templates/base.html:94
+msgid "Search"
+msgstr "Поиск"
+
+#: app/main/forms.py:30
+msgid "About me"
+msgstr "Обо мне"
+
+#: app/main/forms.py:45
 msgid "Say something"
 msgstr "Расскажите что-то"
 
@@ -134,40 +139,52 @@ msgstr "Вы не можете отписаться от себя!"
 msgid "You are not following %(username)s."
 msgstr "Вы не подписаны на %(username)s."
 
-#: app/templates/_post.html:14
+#: app/main/routes.py:169
+msgid "Your message has been sent."
+msgstr "Ваше сообщение было отправлено."
+
+#: app/main/routes.py:172
+msgid "Send Message"
+msgstr "Написать"
+
+#: app/templates/_post.html:16
 #, python-format
 msgid "%(username)s said %(when)s"
 msgstr "%(username)s сказал(а) %(when)s"
 
-#: app/templates/_post.html:24
+#: app/templates/_post.html:26
 msgid "Translate"
 msgstr "Перевести"
 
-#: app/templates/base.html:32
+#: app/templates/base.html:34
 msgid "Error: Could not contact server."
 msgstr "Ошибка: не удалось связаться с сервером."
 
-#: app/templates/base.html:39
+#: app/templates/base.html:65
 msgid "Welcome to "
 msgstr "Добро пожаловать в "
 
-#: app/templates/base.html:56
+#: app/templates/base.html:82
 msgid "Home"
 msgstr "Главная"
 
-#: app/templates/base.html:59
+#: app/templates/base.html:85
 msgid "Explore"
 msgstr "Лента постов"
 
-#: app/templates/base.html:65
+#: app/templates/base.html:102
 msgid "Login"
 msgstr "Войти"
 
-#: app/templates/base.html:69
+#: app/templates/base.html:107 app/templates/messages.html:4
+msgid "Messages"
+msgstr "Сообщения"
+
+#: app/templates/base.html:117
 msgid "Profile"
 msgstr "Профиль"
 
-#: app/templates/base.html:72
+#: app/templates/base.html:121
 msgid "Logout"
 msgstr "Выход"
 
@@ -181,48 +198,89 @@ msgid "Hi, %(username)s!"
 msgstr "Привет, %(username)s!"
 
 #: app/templates/index.html:18 app/templates/search.html:14
-#: app/templates/user.html:45
+#: app/templates/user.html:51
 msgid "Previous results"
 msgstr "Предыдущие результаты"
 
 #: app/templates/index.html:24 app/templates/search.html:20
-#: app/templates/user.html:51
+#: app/templates/user.html:57
 msgid "Next results"
 msgstr "Следующие результаты"
+
+#: app/templates/messages.html:12
+msgid "Newer messages"
+msgstr "Новее сообщения"
+
+#: app/templates/messages.html:18
+msgid "Older messages"
+msgstr "Старее сообщения"
 
 #: app/templates/search.html:4
 msgid "Search Results"
 msgstr "Результаты поиска"
 
+#: app/templates/send_message.html:5
+#, python-format
+msgid "Send Message to %(recipient)s"
+msgstr "Отправить сообщение %(recipient)s"
+
 #: app/templates/user.html:8
 msgid "User"
 msgstr "Пользователь"
 
-#: app/templates/user.html:11 app/templates/user.html:12
+#: app/templates/user.html:11 app/templates/user_popup.html:7
 msgid "Last seen on"
 msgstr "Последняя активность: "
 
-#: app/templates/user.html:15
+#: app/templates/user.html:14 app/templates/user_popup.html:10
 #, python-format
 msgid "%(count)d followers"
 msgstr "%(count)d подписчики"
 
-#: app/templates/user.html:16
+#: app/templates/user.html:15 app/templates/user_popup.html:11
 #, python-format
 msgid "%(count)d following"
 msgstr "%(count)d подписки"
 
-#: app/templates/user.html:19
+#: app/templates/user.html:20 app/templates/user_popup.html:17
+msgid "Send message"
+msgstr "Написать"
+
+#: app/templates/user.html:25
 msgid "Edit your profile"
 msgstr "Редактировать профиль"
 
-#: app/templates/user.html:24
+#: app/templates/user.html:30 app/templates/user_popup.html:22
 msgid "Follow"
 msgstr "Подписаться"
 
-#: app/templates/user.html:31
+#: app/templates/user.html:37 app/templates/user_popup.html:26
 msgid "Unfollow"
 msgstr "Отписаться"
+
+#: app/templates/auth/login.html:12
+msgid "New User?"
+msgstr "Новый пользователь?"
+
+#: app/templates/auth/login.html:12
+msgid "Click to Register!"
+msgstr "Нажмите для регистрации!"
+
+#: app/templates/auth/login.html:14
+msgid "Forgot Your Password?"
+msgstr "Забыли пароль?"
+
+#: app/templates/auth/login.html:15
+msgid "Click to Reset It"
+msgstr "Нажмите, чтобы сбросить"
+
+#: app/templates/auth/reset_password.html:5
+msgid "Reset Your Password"
+msgstr "Сбросить пароль"
+
+#: app/templates/auth/reset_password_request.html:5
+msgid "Reset Password"
+msgstr "Сброс пароля"
 
 #: app/templates/email/reset_password.html:1
 msgid "Dear"
@@ -267,31 +325,4 @@ msgstr "Произошла неожиданная ошибка"
 #: app/templates/errors/500.html:5
 msgid "The administrator has been notified. Sorry for the inconvenience!"
 msgstr "Администратор был уведомлен. Приносим извинения за неудобства!"
-
-#~ msgid "Newer posts"
-#~ msgstr "Новее"
-
-#~ msgid "Older posts"
-#~ msgstr "Старее"
-
-#~ msgid "New User?"
-#~ msgstr "Новый пользователь?"
-
-#~ msgid "Click to Register!"
-#~ msgstr "Нажмите, чтобы зарегистрироваться!"
-
-#~ msgid "Forgot Your Password?"
-#~ msgstr "Забыли Ваш пароль?"
-
-#~ msgid "Click to Reset It"
-#~ msgstr "Нажмите, чтобы сбросить"
-
-#~ msgid "Reset Your Password"
-#~ msgstr "Сбросить пароль"
-
-#~ msgid "Reset Password"
-#~ msgstr "Сброс пароля"
-
-#~ msgid "Welcome to Blogeek"
-#~ msgstr "Добро пожаловать в микроблог"
 
