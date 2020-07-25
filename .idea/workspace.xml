@@ -11,11 +11,21 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="65a22988-42dd-4bed-8bff-6d7d84a95019" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/app/templates/user_popup.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/templates/send_message.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/auth/routes.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/auth/routes.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/auth/templates/reset_password.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/templates/auth/reset_password.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/auth/templates/reset_password_request.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/templates/auth/reset_password_request.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/main/forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/main/forms.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/main/routes.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/main/routes.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/templates/_post.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/templates/_post.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/models.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/templates/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/templates/base.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/templates/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/templates/auth/login.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/templates/register.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/templates/auth/register.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/templates/user.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/templates/user.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/templates/user_popup.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/templates/user_popup.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/translations/ru/LC_MESSAGES/messages.po" beforeDir="false" afterPath="$PROJECT_DIR$/app/translations/ru/LC_MESSAGES/messages.po" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/blogeek.py" beforeDir="false" afterPath="$PROJECT_DIR$/blogeek.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -49,6 +59,7 @@
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\PycharmProjects\Flask\blogeek\app\templates\auth" />
       <recent name="C:\PycharmProjects\Flask\blogeek\app\templates" />
     </key>
   </component>
