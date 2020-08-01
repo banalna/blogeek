@@ -39,3 +39,8 @@ class Config(object):
     # For Heroku
     LOG_TO_STDOUT = os.environ.get('LOG_TO_STDOUT')
 
+    # Redis
+    REDIS_ROUTE = os.environ.get('REDIS_ROUTE')
+    REDIS_PORT = os.environ.get('REDIS_ROUTE')
+    REDIS_URL = os.environ.get('REDIS_URL') or 'redis://'
+

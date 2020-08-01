@@ -4,6 +4,8 @@ import os
 
 import logging
 from logging.handlers import RotatingFileHandler, SMTPHandler
+
+import rq
 from flask import Flask, current_app
 from flask import request
 
@@ -17,6 +19,7 @@ from flask_babel import lazy_gettext as _l
 from flask_bootstrap import Bootstrap
 
 from elasticsearch import Elasticsearch
+from redis import Redis
 
 from config import Config
 
@@ -51,6 +54,8 @@ def create_app(config_class=Config):
     moment.init_app(_app)
     babel.init_app(_app)
     _app.elasticsearch = Elasticsearch([_app.config['ELASTICSEARCH_URL']]) if _app.config['ELASTICSEARCH_URL'] else None
+    _app.redis = Redis.from_url(_app.config['REDIS_URL'])
+    _app.task_queue = rq.Queue('blogeek-tasks', connection=_app.redis)
 
     # register scheme of app
     from app.errors import bp as errors_bp

@@ -1,1 +1,2 @@
-web: flask db upgrade; flask translate compile; gunicorn blogeek:app
+web: flask db upgrade; flask translate compile; gunicorn microblog:app
+worker: rq worker blogeek-tasks
