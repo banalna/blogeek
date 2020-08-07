@@ -11,7 +11,7 @@ $container=$settings.name
 docker run --name mysql --rm -d -e MYSQL_DATABASE="$($settings.MYSQL_DATABASE)" -e MYSQL_USER="$($settings.MYSQL_USER)" -e MYSQL_PASSWORD="$($settings.MYSQL_PASSWORD)" mysql/mysql-server:5.7
 
 # run Redis
-docker run --name redis -d -p 6379:6379 redis:3-alpine
+docker run --name redis -d -p 6379:6379 --rm redis:3-alpine
 
 # run elasticsearch
 docker run --name elasticsearch -d -p 9200:9200 -p 9300:9300 --rm -e "discovery.type=single-node" docker.elastic.co/elasticsearch/elasticsearch-oss:7.7.0

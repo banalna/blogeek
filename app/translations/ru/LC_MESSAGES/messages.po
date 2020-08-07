@@ -110,7 +110,7 @@ msgstr "Расскажите что-то"
 
 #: app/main/routes.py:57
 msgid "Your post is now live!"
-msgstr "Ваш пост сейчас жив!"
+msgstr "Опубликовано!"
 
 #: app/main/routes.py:102
 msgid "Your changes have been saved."
