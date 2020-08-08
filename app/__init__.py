@@ -4,6 +4,7 @@ import os
 
 import logging
 from logging.handlers import RotatingFileHandler, SMTPHandler
+
 from flask import Flask, current_app
 from flask import request
 
@@ -61,6 +62,9 @@ def create_app(config_class=Config):
 
     from app.main import bp as main_bp
     _app.register_blueprint(main_bp)
+
+    from app.api import bp as api_bp
+    _app.register_blueprint(api_bp, url_prefix='/api')
 
     if not _app.debug and not _app.testing:
         # send mails
