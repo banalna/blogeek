@@ -15,8 +15,9 @@
     </select>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="65a22988-42dd-4bed-8bff-6d7d84a95019" name="Default Changelist" comment="add API">
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+    <list default="true" id="65a22988-42dd-4bed-8bff-6d7d84a95019" name="Default Changelist" comment="add Chats, update UI">
+      <change beforePath="$PROJECT_DIR$/.env" beforeDir="false" afterPath="$PROJECT_DIR$/.env" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/settings.json" beforeDir="false" afterPath="$PROJECT_DIR$/settings.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -26,8 +27,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="HTML File" />
         <option value="Python Script" />
+        <option value="HTML File" />
       </list>
     </option>
   </component>
@@ -56,8 +57,39 @@
       <recent name="C:\PycharmProjects\Flask\blogeek\app\templates" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.blogeek">
+  <component name="RunManager" selected="PowerShell.run.ps1">
     <configuration name="run.ps1" type="PowerShellRunType" factoryName="PowerShell" temporary="true" scriptUrl="$PROJECT_DIR$/run.ps1" workingDirectory="C:\Users\judas">
+      <method v="2" />
+    </configuration>
+    <configuration default="true" type="PythonConfigurationType" factoryName="Python">
+      <module name="blogeek" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="C:\PycharmProjects\Flask\blogeek\venv\Scripts\python.exe" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="net.ashald.envfile">
+        <option name="IS_ENABLED" value="false" />
+        <option name="IS_SUBST" value="false" />
+        <option name="IS_PATH_MACRO_SUPPORTED" value="false" />
+        <option name="IS_IGNORE_MISSING_FILES" value="false" />
+        <option name="IS_ENABLE_EXPERIMENTAL_INTEGRATIONS" value="false" />
+        <ENTRIES>
+          <ENTRY IS_ENABLED="true" PARSER="runconfig" />
+        </ENTRIES>
+      </EXTENSION>
+      <option name="SCRIPT_NAME" value="" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
     <configuration name="blogeek" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
@@ -72,8 +104,49 @@
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="net.ashald.envfile">
+        <option name="IS_ENABLED" value="false" />
+        <option name="IS_SUBST" value="false" />
+        <option name="IS_PATH_MACRO_SUPPORTED" value="false" />
+        <option name="IS_IGNORE_MISSING_FILES" value="false" />
+        <option name="IS_ENABLE_EXPERIMENTAL_INTEGRATIONS" value="false" />
+        <ENTRIES>
+          <ENTRY IS_ENABLED="true" PARSER="runconfig" />
+        </ENTRIES>
+      </EXTENSION>
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/blogeek.py" />
       <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="falsk run" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
+      <module name="blogeek" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="C:\PycharmProjects\Flask\blogeek\venv\Scripts\python.exe" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="net.ashald.envfile">
+        <option name="IS_ENABLED" value="false" />
+        <option name="IS_SUBST" value="false" />
+        <option name="IS_PATH_MACRO_SUPPORTED" value="false" />
+        <option name="IS_IGNORE_MISSING_FILES" value="false" />
+        <option name="IS_ENABLE_EXPERIMENTAL_INTEGRATIONS" value="false" />
+        <ENTRIES>
+          <ENTRY IS_ENABLED="true" PARSER="runconfig" />
+        </ENTRIES>
+      </EXTENSION>
+      <option name="SCRIPT_NAME" value="" />
+      <option name="PARAMETERS" value="flask run" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
       <option name="MODULE_MODE" value="false" />
@@ -102,11 +175,17 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
+    <list>
+      <item itemvalue="PowerShell.run.ps1" />
+      <item itemvalue="Python.falsk run" />
+      <item itemvalue="Python.blogeek" />
+      <item itemvalue="Python.tasks" />
+    </list>
     <recent_temporary>
       <list>
+        <item itemvalue="PowerShell.run.ps1" />
         <item itemvalue="Python.blogeek" />
         <item itemvalue="Python.tasks" />
-        <item itemvalue="PowerShell.run.ps1" />
       </list>
     </recent_temporary>
   </component>
@@ -142,7 +221,21 @@
       <option name="project" value="LOCAL" />
       <updated>1596843518609</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="add Chats, update UI">
+      <created>1597279787323</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1597279787323</updated>
+    </task>
+    <task id="LOCAL-00005" summary="add Chats, update UI">
+      <created>1597283992982</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1597283992982</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -150,19 +243,7 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State>
-              <option name="FILTERS">
-                <map>
-                  <entry key="branch">
-                    <value>
-                      <list>
-                        <option value="master" />
-                      </list>
-                    </value>
-                  </entry>
-                </map>
-              </option>
-            </State>
+            <State />
           </value>
         </entry>
       </map>
@@ -175,50 +256,59 @@
     </ignored-roots>
     <MESSAGE value="update (add redis workers)" />
     <MESSAGE value="add API" />
-    <option name="LAST_COMMIT_MESSAGE" value="add API" />
+    <MESSAGE value="add Chats, update UI" />
+    <option name="LAST_COMMIT_MESSAGE" value="add Chats, update UI" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="534" y="214" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1596842904259">
+    <state x="223" y="67" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1597187860908">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="534" y="214" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1536.824@0.0.1536.824" timestamp="1596842904259" />
-    <state x="548" y="166" key="FileChooserDialogImpl" timestamp="1595547573205">
+    <state x="223" y="67" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1536.824@0.0.1536.824" timestamp="1597187860908" />
+    <state x="534" y="214" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1597193160422">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="548" y="166" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1595547573205" />
-    <state width="1515" height="210" key="GridCell.Tab.0.bottom" timestamp="1596265024547">
+    <state x="534" y="214" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1536.824@0.0.1536.824" timestamp="1597193160422" />
+    <state x="548" y="166" key="FileChooserDialogImpl" timestamp="1597185471186">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1515" height="210" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1596265024547" />
-    <state width="1515" height="210" key="GridCell.Tab.0.center" timestamp="1596265024547">
+    <state x="548" y="166" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1597185471186" />
+    <state width="1044" height="210" key="GridCell.Tab.0.bottom" timestamp="1597279920235">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1515" height="210" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1596265024547" />
-    <state width="1515" height="210" key="GridCell.Tab.0.left" timestamp="1596265024546">
+    <state width="1044" height="210" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1597279920235" />
+    <state width="1044" height="210" key="GridCell.Tab.0.center" timestamp="1597279920235">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1515" height="210" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1596265024546" />
-    <state width="1515" height="210" key="GridCell.Tab.0.right" timestamp="1596265024547">
+    <state width="1044" height="210" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1597279920235" />
+    <state width="1044" height="210" key="GridCell.Tab.0.left" timestamp="1597279920235">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1515" height="210" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1596265024547" />
-    <state x="277" y="57" key="SettingsEditor" timestamp="1596263483976">
+    <state width="1044" height="210" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1597279920235" />
+    <state width="1044" height="210" key="GridCell.Tab.0.right" timestamp="1597279920235">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="277" y="57" key="SettingsEditor/0.0.1536.824@0.0.1536.824" timestamp="1596263483976" />
+    <state width="1044" height="210" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1597279920235" />
+    <state x="589" y="115" key="RollbackChangesDialog" timestamp="1597274931070">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="589" y="115" key="RollbackChangesDialog/0.0.1536.824@0.0.1536.824" timestamp="1597274931070" />
+    <state x="277" y="57" key="SettingsEditor" timestamp="1597279742574">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="277" y="57" key="SettingsEditor/0.0.1536.824@0.0.1536.824" timestamp="1597279742574" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/app/main/routes.py</url>
-          <line>193</line>
-          <option name="timeStamp" value="1" />
+          <url>file://$PROJECT_DIR$/app/tasks.py</url>
+          <line>35</line>
+          <option name="timeStamp" value="2" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/app/tasks.py</url>
-          <line>36</line>
-          <option name="timeStamp" value="2" />
+          <url>file://$PROJECT_DIR$/app/models.py</url>
+          <line>162</line>
+          <option name="timeStamp" value="4" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

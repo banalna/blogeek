@@ -2,14 +2,15 @@
 
 from datetime import datetime
 
-from flask import render_template, flash, redirect, url_for, request, g, jsonify, current_app
+from flask import render_template, flash, redirect, url_for, request, g, jsonify, current_app, session
 from flask_babel import _, get_locale
 from flask_login import current_user, login_required
+from flask_socketio import emit
 from guess_language import guess_language
 
-from app import app, db
+from app import app, db, socketio
 from app.main.forms import PostForm, EmptyForm, EditProfileForm, MessageForm
-from app.models import User, Post, Message, Notification
+from app.models import User, Post, Message, Notification, Room
 from app.translate import translate
 
 from app.main.forms import SearchForm
@@ -108,6 +109,22 @@ def edit_profile():
                            form=form)
 
 
+@bp.route('/followers', methods=['GET'])
+@login_required
+def followers():
+    form = EmptyForm()
+    return render_template('follow.html', followers=current_user.followers.all(), current_user=current_user, form=form,
+                           title=_('My followers'))
+
+
+@bp.route('/followed', methods=['GET'])
+@login_required
+def followed():
+    form = EmptyForm()
+    return render_template('follow.html', followers=current_user.followed.all(), current_user=current_user, form=form,
+                           title=_('My following'))
+
+
 @bp.route('/follow/<username>', methods=['POST'])
 @login_required
 def follow(username):
@@ -151,8 +168,9 @@ def translate_text():
 @bp.route('/user/<username>/popup')
 @login_required
 def user_popup(username):
+    form = EmptyForm()
     user = User.query.filter_by(username=username).first_or_404()
-    return render_template('user_popup.html', user=user)
+    return render_template('user_popup.html', user=user, form=form)
 
 
 @bp.route('/send_message/<recipient>', methods=['GET', 'POST'])
@@ -162,30 +180,79 @@ def send_message(recipient):
     form = MessageForm()
 
     if form.validate_on_submit():
+        if not user.get_room(current_user):
+            room = Room(author=current_user, recipient=user)
+            db.session.add(room)
+            db.session.commit()
+
+        session['name'] = current_user.username
+        session['room'] = current_user.get_room(user).id
+
         msg = Message(author=current_user, recipient=user, body=form.message.data)
         user.add_notification('unread_message_count', user.new_messages())
         db.session.add(msg)
         db.session.commit()
         flash(_('Your message has been sent.'))
-        return redirect(url_for('main.user', username=recipient))
+        return redirect(url_for('main.dialog', recipient=recipient))
 
     return render_template('send_message.html', title=_('Send Message'), form=form, recipient=recipient)
+
+
+@bp.route('/dialog/<recipient>/chat', methods=['GET'])
+@bp.route('/dialog/<recipient>', methods=['GET', 'POST'])
+@login_required
+def dialog(recipient):
+    user = User.query.filter_by(username=recipient).first_or_404()
+
+    current_user.last_message_read_time = datetime.utcnow()
+    current_user.add_notification('unread_message_count', 0)
+    db.session.commit()
+
+    page = request.args.get('page', 1, type=int)
+    # get all dialog messages
+    messages = Message.query.filter_by(author=user, recipient=current_user).union(
+        Message.query.filter_by(author=current_user, recipient=user)
+    ).order_by(
+        Message.timestamp.asc()).paginate(page, current_app.config['POSTS_PER_PAGE'], False)
+
+    next_url = url_for('main.messages', page=messages.next_num) if messages.has_next else None
+    prev_url = url_for('main.messages', page=messages.prev_num) if messages.has_prev else None
+
+    if not user.get_room(current_user):
+        room = Room(author=current_user, recipient=user)
+        db.session.add(room)
+        db.session.commit()
+
+    session['name'] = current_user.username
+    session['room'] = current_user.get_room(user).id
+
+    if request.path.split('/')[-1] == 'chat':
+        return render_template('_chat.html', title=_('Send Message'), recipient=recipient,
+                               messages=messages.items, room=session['room'], name=session['name'])
+    else:
+        return render_template('dialog.html', title=_('Send Message'), recipient=recipient,
+                               messages=messages.items, room=session['room'], name=session['name'])
 
 
 @bp.route('/messages')
 @login_required
 def messages():
-    current_user.last_message_read_time = datetime.utcnow()
-    current_user.add_notification('unread_message_count', 0)
-    db.session.commit()
+    # current_user.last_message_read_time = datetime.utcnow()
+    # current_user.add_notification('unread_message_count', 0)
+    # db.session.commit()
+
     page = request.args.get('page', 1, type=int)
+
+    dialogs = current_user.get_dialogs()
+
     messages = current_user.messages_received.order_by(
         Message.timestamp.desc()).paginate(page, current_app.config['POSTS_PER_PAGE'], False)
 
     next_url = url_for('main.messages', page=messages.next_num) if messages.has_next else None
     prev_url = url_for('main.messages', page=messages.prev_num) if messages.has_prev else None
 
-    return render_template('messages.html', messages=messages.items, next_url=next_url, prev_url=prev_url)
+    return render_template('messages.html', messages=messages.items, dialogs=dialogs, next_url=next_url,
+                           prev_url=prev_url)
 
 
 @bp.route('/export_posts')

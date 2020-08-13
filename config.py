@@ -31,7 +31,7 @@ class Config(object):
     FLASK_DEBUG = os.environ.get('FLASK_DEBUG')
 
     # App preferences
-    POSTS_PER_PAGE = 25
+    POSTS_PER_PAGE = 5000
     LANGUAGES = ['en', 'ru']
     MS_TRANSLATOR_KEY = os.environ.get('MS_TRANSLATOR_KEY')
     ELASTICSEARCH_URL = os.environ.get('ELASTICSEARCH_URL')

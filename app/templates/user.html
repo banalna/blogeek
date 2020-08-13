@@ -1,69 +1,137 @@
 {% extends "base.html" %}
 
 {% block app_content %}
-    <table class="table table-hover">
-        <tr>
-            <td width="256px"><img src="{{ user.avatar(256) }}"></td>
-            <td>
-                <h1>{{ _('User') }}: {{ user.username }}</h1>
-                {% if user.about_me %}<p>{{ user.about_me }}</p>{% endif %}
-                {% if user.last_seen %}
-                <p>{{ _('Last seen on') }}: {{ moment(user.last_seen).fromNow() }}</p>
-                {% endif %}
-                <p>
+
+
+<div class="card mb-3" style="max-width: 95%;">
+    <div class="row no-gutters">
+        <div class="col-md-4">
+            <img src="{{ user.avatar(256) }}" class="card-img" alt="avatar">
+        </div>
+        <div class="col-md-8 pl-3">
+            <div class="card-body">
+                <h5 class="card-title">{{ _('User') }}: {{ user.username }}</h5>
+
+                <p class="card-text">
+                    {% if user.about_me %}
+                <p>{{ user.about_me }}</p>{% endif %}
+                </p>
+                <p class="card-text">
                     {{ _('%(count)d followers', count=user.followers.count()) }},
                     {{ _('%(count)d following', count=user.followed.count()) }}
                 </p>
-                {% if user != current_user %}
+
+                <p class="card-text"><span class="text-muted">
+                        {% if user.last_seen %}
+                        <p>{{ _('Last seen on') }}: {{ moment(user.last_seen).fromNow() }}</p>
+                        {% endif %}
+                    </span></p>
+
+
+                <div class="row">
+                    {% if user != current_user %}
                     <p>
-                        <a href="{{ url_for('main.send_message',recipient=user.username) }}">
+                        <a class="btn btn-outline-primary mr-2 ml-2"
+                            href="{{ url_for('main.send_message',recipient=user.username) }}">
                             {{ _('Send message') }}
                         </a>
                     </p>
-                {% endif %}
-                {% if user == current_user %}
-                <p><a href="{{ url_for('main.edit_profile') }}">{{ _('Edit your profile') }}</a></p>
-                    {% if not current_user.get_task_in_progress('export_posts') %}
-                        <p>
-                            <a href="{{ url_for('main.export_posts') }}">
-                                {{ _('Export your posts') }}
-                            </a>
-                        </p>
                     {% endif %}
-                {% elif not current_user.is_following(user) %}
+                    {% if user == current_user %}
+                    <p><a class="btn btn-outline-primary mr-2 ml-2"
+                            href="{{ url_for('main.edit_profile') }}">{{ _('Edit your profile') }}</a></p>
+                    {% if not current_user.get_task_in_progress('export_posts') %}
                     <p>
-                        <form action="{{ url_for('main.follow', username=user.username) }}" method="post">
-                            {{ form.hidden_tag() }}
-                            {{ form.submit(value=_('Follow'), class_='btn btn-default') }}
-                        </form>
+                        <a class="btn btn-default mr-2 ml-2" href="{{ url_for('main.export_posts') }}">
+                            {{ _('Export your posts') }}
+                        </a>
                     </p>
-                {% else %}
-                <p>
+                    {% endif %}
+                    {% elif not current_user.is_following(user) %}
+                    <p>
+                    <form action="{{ url_for('main.follow', username=user.username) }}" method="post">
+                        {{ form.hidden_tag() }}
+                        {{ form.submit(value=_('Follow'), class_='mr-2 ml-2 btn btn-default') }}
+                    </form>
+                    </p>
+                    {% else %}
+                    <p>
                     <form action="{{ url_for('main.unfollow', username=user.username) }}" method="post">
                         {{ form.hidden_tag() }}
-                        {{ form.submit(value=_('Unfollow'), class_='btn btn-default') }}
+                        {{ form.submit(value=_('Unfollow'), class_='mr-2 ml-2 btn btn-default ') }}
                     </form>
-                </p>
-                {% endif %}
-            </td>
-        </tr>
-    </table>
-    {% for post in posts %}
-        {% include '_post.html' %}
-    {% endfor %}
-     <nav aria-label="Page navigation ">
-        <ul class="pagination">
-          <li class="page-item {% if not prev_url %} disabled{% endif %}">
-            <a class="page-link" href="{{ prev_url or '#' }}" aria-label="Next">
-              <span aria-hidden="true">&laquo;</span> {{ _('Previous results') }}
-            </a>
-          </li>
+                    </p>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
-          <li class="page-item {% if not prev_url %} disabled{% endif %}">
-            <a class="page-link " href="{{ next_url or '#' }}" aria-label="Previous">
-              {{ _('Next results') }} <span aria-hidden="true">&raquo;</span>
+<!-- <table class="table table-hover">
+    <tr>
+        <td width="256px"><img src="{{ user.avatar(256) }}"></td>
+        <td>
+            <h1>{{ _('User') }}: {{ user.username }}</h1>
+            {% if user.about_me %}<p>{{ user.about_me }}</p>{% endif %}
+            {% if user.last_seen %}
+            <p>{{ _('Last seen on') }}: {{ moment(user.last_seen).fromNow() }}</p>
+            {% endif %}
+            <p>
+                {{ _('%(count)d followers', count=user.followers.count()) }},
+                {{ _('%(count)d following', count=user.followed.count()) }}
+            </p>
+            {% if user != current_user %}
+            <p>
+                <a class="btn btn-outline-primary" href="{{ url_for('main.send_message',recipient=user.username) }}">
+                    {{ _('Send message') }}
+                </a>
+            </p>
+            {% endif %}
+            {% if user == current_user %}
+            <p><a href="{{ url_for('main.edit_profile') }}">{{ _('Edit your profile') }}</a></p>
+            {% if not current_user.get_task_in_progress('export_posts') %}
+            <p>
+                <a href="{{ url_for('main.export_posts') }}">
+                    {{ _('Export your posts') }}
+                </a>
+            </p>
+            {% endif %}
+            {% elif not current_user.is_following(user) %}
+            <p>
+            <form action="{{ url_for('main.follow', username=user.username) }}" method="post">
+                {{ form.hidden_tag() }}
+                {{ form.submit(value=_('Follow'), class_='btn btn-default') }}
+            </form>
+            </p>
+            {% else %}
+            <p>
+            <form action="{{ url_for('main.unfollow', username=user.username) }}" method="post">
+                {{ form.hidden_tag() }}
+                {{ form.submit(value=_('Unfollow'), class_='btn btn-default') }}
+            </form>
+            </p>
+            {% endif %}
+        </td>
+    </tr>
+</table> -->
+
+{% for post in posts %}
+{% include '_post.html' %}
+{% endfor %}
+<nav aria-label="Page navigation ">
+    <ul class="pagination">
+        <li class="page-item {% if not prev_url %} disabled{% endif %}">
+            <a class="page-link" href="{{ prev_url or '#' }}" aria-label="Next">
+                <span aria-hidden="true">&laquo;</span> {{ _('Previous results') }}
             </a>
-          </li>
-        </ul>
-    </nav>
+        </li>
+
+        <li class="page-item {% if not prev_url %} disabled{% endif %}">
+            <a class="page-link " href="{{ next_url or '#' }}" aria-label="Previous">
+                {{ _('Next results') }} <span aria-hidden="true">&raquo;</span>
+            </a>
+        </li>
+    </ul>
+</nav>
 {% endblock %}

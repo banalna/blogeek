@@ -13,18 +13,20 @@
 
                 {% if user != current_user %}
                     <p>
-                        <a href="{{ url_for('main.send_message',recipient=user.username) }}">
+                        <a class="btn btn-outline-primary btn-sm" href="{{ url_for('main.send_message',recipient=user.username) }}">
                             {{ _('Send message') }}
                         </a>
                     </p>
                     {% if not current_user.is_following(user) %}
-                    <a href="{{ url_for('main.follow', username=user.username) }}">
-                        {{ _('Follow') }}
-                    </a>
+                        <form action="{{ url_for('main.follow', username=user.username) }}" method="post">
+                            {{ form.hidden_tag() }}
+                            {{ form.submit(value=_('Follow'), class_='btn btn-default btn-sm') }}
+                        </form>
                     {% else %}
-                    <a href="{{ url_for('main.unfollow', username=user.username) }}">
-                        {{ _('Unfollow') }}
-                    </a>
+                        <form action="{{ url_for('main.unfollow', username=user.username) }}" method="post">
+                            {{ form.hidden_tag() }}
+                            {{ form.submit(value=_('Unfollow'), class_='btn btn-default btn-sm') }}
+                        </form>
                     {% endif %}
                 {% endif %}
                 

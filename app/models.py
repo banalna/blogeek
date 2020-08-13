@@ -12,15 +12,13 @@ from hashlib import md5
 import jwt
 from flask import current_app, url_for
 
-from flask_login import UserMixin
+from flask_login import UserMixin, current_user
 from werkzeug.security import generate_password_hash, check_password_hash
 from app import db, login
 from app.search import add_to_index, remove_from_index, query_index
 
 import redis
 import rq
-
-
 
 # relation users table
 followers = db.Table('followers',
@@ -81,7 +79,49 @@ class User(UserMixin, db.Model, PaginatedAPIMixin):
     last_message_read_time = db.Column(db.DateTime)
     notifications = db.relationship('Notification', backref='user', lazy='dynamic')
 
+    room_rec = db.relationship('Room', foreign_keys='Room.recipient_id', backref='recipient', lazy='dynamic')
+    room_aut = db.relationship('Room', foreign_keys='Room.sender_id', backref='author', lazy='dynamic')
+
     tasks = db.relationship('Task', backref='user', lazy='dynamic')
+
+    def get_dialogs(self):
+        rooms = Room.query.filter_by(author=current_user).all() + Room.query.filter_by(recipient=current_user).all()
+
+        dialogs = []
+
+        for room in rooms:
+            sender = User.query.get(room.sender_id) if current_user.id != room.sender_id \
+                else User.query.get(room.recipient_id)
+
+            _last_send = Message.query.filter_by(author=sender, recipient=current_user).order_by(
+                Message.timestamp.desc()).first()
+            _last_receive = Message.query.filter_by(author=current_user, recipient=sender).order_by(
+                Message.timestamp.desc()).first()
+
+            last_message = None
+
+            if _last_send and _last_receive:
+                last_message = _last_send if _last_send.timestamp > _last_receive.timestamp else _last_receive
+            else:
+                last_message = _last_send if _last_send else _last_receive if _last_receive else None
+
+            if last_message:
+                dialogs.append({'sender': sender, 'last_message': last_message})
+
+        # sort by rime
+        swapped = True
+        while swapped:
+            swapped = False
+            for i in range(len(dialogs) - 1):
+                if dialogs[i]['last_message'].timestamp < dialogs[i + 1]['last_message'].timestamp:
+                    dialogs[i], dialogs[i + 1] = dialogs[i + 1], dialogs[i]
+                    swapped = True
+
+        return dialogs
+
+    def get_room(self, sender):
+        return Room.query.filter_by(recipient=sender, author=self).first() or \
+               Room.query.filter_by(recipient=self, author=sender).first()
 
     def new_messages(self):
         last_read_time = self.last_message_read_time or datetime(1900, 1, 1)
@@ -123,6 +163,14 @@ class User(UserMixin, db.Model, PaginatedAPIMixin):
         return 'https://www.gravatar.com/avatar/{}?d=identicon&s={}'.format(
             digest, size)
 
+    # def get_followers(self):
+    #     print(self.followed.filter(followers.c.followed_id == self.id))
+    #     return 'OK'
+    #
+    #
+    # def get_followed(self):
+    #     return self.followed.all()
+
     def follow(self, user):
         if not self.is_following(user):
             self.followed.append(user)
@@ -146,7 +194,6 @@ class User(UserMixin, db.Model, PaginatedAPIMixin):
         return jwt.encode(
             {'reset_password': self.id, 'exp': time() + expires_in},
             current_app.config['SECRET_KEY'], algorithm='HS256').decode('utf-8')
-
 
     @staticmethod
     def verify_reset_password_token(token):
@@ -229,6 +276,16 @@ class Task(db.Model):
         return job.meta.get('progress', 0) if job is not None else 100
 
 
+class Room(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    sender_id = db.Column(db.Integer, db.ForeignKey('user.id'))
+    recipient_id = db.Column(db.Integer, db.ForeignKey('user.id'))
+    timestamp = db.Column(db.DateTime, index=True, default=datetime.utcnow)
+
+    def __repr__(self):
+        return '<Room {}>'.format(self.id)
+
+
 class Message(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     sender_id = db.Column(db.Integer, db.ForeignKey('user.id'))
@@ -309,6 +366,3 @@ class Post(SearchableMixin, db.Model):
 
     def __repr__(self):
         return '<Post {}>'.format(self.body)
-
-
-
