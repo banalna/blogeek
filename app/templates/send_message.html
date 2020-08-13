@@ -2,11 +2,28 @@
 {% from 'bootstrap/form.html' import render_form %}
 
 {% block app_content %}
-    <h1>{{ _('Send Message to %(recipient)s', recipient=recipient) }}</h1>
-    <div class="row">
-        <div class="col-md-4">
-            {{ render_form(form) }}
-        </div>
-    </div>
-{% endblock %}
 
+<style>
+    .center-block {
+        margin-left: auto;
+        margin-right: auto
+    }
+</style>
+
+<h2 class="text-center">{{ _('Send Message to %(recipient)s', recipient=recipient) }}</h2>
+<div class="row center-block">
+
+    <div class="col-md-5 center-block">
+        <form action="" method="post">
+            {{ form.hidden_tag() }}
+            {{form.message(class="form-control", id="message",  )}}
+            {{ form.submit(value=_('Send'), class_='nav-link btn btn-secondary btn-block mt-3') }}
+
+            <a class="btn btn-primary mt-3 btn-block nav-link" href="/dialog/{{recipient}}"
+                role="button">{{_('Dialog')}}</a>
+        </form>
+        <!-- {{ render_form(form) }} -->
+    </div>
+
+</div>
+{% endblock %}

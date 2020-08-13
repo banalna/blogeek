@@ -1,0 +1,90 @@
+{% extends "base.html" %}
+{% from 'bootstrap/form.html' import render_form %}
+
+
+{% block app_content %}
+
+<style>
+    .center-block {
+        margin-left: auto;
+        margin-right: auto
+    }
+</style>
+
+
+<div class="container">
+
+        <h3>{{ title }}</h3>
+
+        {% for follow in followers %}
+
+        <a href="{{ url_for('main.dialog', recipient=follow.username) }}" style="text-decoration: none;">
+            <div class="table-responsive">
+                <table class="table table-hover">
+                    <tr>
+                        <td width="70px">
+                            <a href="{{ url_for('main.user', username=follow.username) }}">
+                                <img src="{{ follow.avatar(70) }}" />
+                            </a>
+                        </td>
+                        <td class="col-4">
+                            {% set user_link %}
+                            <span class="user_popup">
+                                <a href="{{ url_for('main.user', username=follow.username) }}">
+                                    <span class="lead">
+                                        <strong>{{ follow.username }}</strong>
+                                    </span>
+                                </a>
+                            </span>
+                            {% endset %}
+                            {{ _('%(username)s %(when)s', username=user_link, when=moment(follow.last_seen).fromNow()) }}
+                            <br>
+                            <span id="follow{{ follow.id }}">{{ follow.body }}</span>
+                            {% if follow.language and follow.language != g.locale %}
+                            <br><br>
+                            <span id="translation{{ follow.id }}">
+                                <a href="javascript:translate(
+                                      '#follow{{ follow.id }}',
+                                      '#translation{{ follow.id }}',
+                                      '{{ follow.language }}',
+                                      '{{ g.locale }}');">{{ _('Translate') }}
+                                </a>
+                            </span>
+                            {% endif %}
+                        </td>
+    
+    
+                        <td class="col-2">
+                            {% if not current_user.is_following(follow) %}
+                            <form action="{{ url_for('main.follow', username=follow.username) }}" method="post">
+                                {{ form.hidden_tag() }}
+                                {{ form.submit(value=_('Follow'), class_='btn btn-primary mt-3 nav-link') }}
+                            </form>
+                            {% else %}
+                            <form action="{{ url_for('main.unfollow', username=follow.username) }}" method="post">
+                                {{ form.hidden_tag() }}
+                                {{ form.submit(value=_('Unfollow'), class_='btn btn-primary mt-3 nav-link') }}
+                            </form>
+                            {% endif %}
+                        </td>
+                        <td class="col-2">
+                            <a class="btn btn-secondary mt-3 nav-link" href="/user/{{follow.username}}"
+                                role="button">{{_('Profile')}}</a>
+                        </td>
+                        <td class="col-2">
+                            <a class="btn btn-primary mt-3 nav-link" href="/dialog/{{follow.username}}"
+                                role="button">{{_('Dialog')}}</a>
+                        </td>
+    
+                    </tr>
+                </table>
+            </div>
+            
+        </a>
+        {% endfor %}
+
+
+</div>
+
+
+{% endblock %}

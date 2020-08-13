@@ -10,20 +10,9 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="65a22988-42dd-4bed-8bff-6d7d84a95019" name="Default Changelist" comment="">
+    <list default="true" id="65a22988-42dd-4bed-8bff-6d7d84a95019" name="Default Changelist" comment="update UI, add Chats">
       <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Procfile" beforeDir="false" afterPath="$PROJECT_DIR$/Procfile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/email.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/email.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/errors/handlers.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/errors/handlers.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/main/routes.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/main/routes.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/templates/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/templates/base.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/templates/user.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/templates/user.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/translations/ru/LC_MESSAGES/messages.po" beforeDir="false" afterPath="$PROJECT_DIR$/app/translations/ru/LC_MESSAGES/messages.po" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/blogeek.py" beforeDir="false" afterPath="$PROJECT_DIR$/blogeek.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config.py" beforeDir="false" afterPath="$PROJECT_DIR$/config.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -32,6 +21,7 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="RESET_MODE" value="MIXED" />
   </component>
   <component name="ProjectId" id="1f4BybcbG2XW9WRycHmAsuMpWQJ" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
@@ -43,7 +33,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
-    <property name="settings.editor.selected.configurable" value="project.propVCSSupport.Mappings" />
+    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
@@ -94,6 +84,42 @@
       <option name="presentableId" value="Default" />
       <updated>1595467739476</updated>
     </task>
+    <task id="LOCAL-00001" summary="update UI, add Chats">
+      <created>1597277202442</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1597277202442</updated>
+    </task>
+    <task id="LOCAL-00002" summary="update UI, add Chats">
+      <created>1597278123947</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1597278123947</updated>
+    </task>
+    <task id="LOCAL-00003" summary="update UI, add Chats">
+      <created>1597278302018</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1597278302018</updated>
+    </task>
+    <task id="LOCAL-00004" summary="update UI, add Chats">
+      <created>1597279210750</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1597279210750</updated>
+    </task>
+    <task id="LOCAL-00005" summary="update UI, add Chats">
+      <created>1597279421375</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1597279421375</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -112,23 +138,29 @@
     <ignored-roots>
       <path value="$PROJECT_DIR$/.." />
     </ignored-roots>
+    <MESSAGE value="update UI, add Chats" />
+    <option name="LAST_COMMIT_MESSAGE" value="update UI, add Chats" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="223" y="67" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1596850689527">
+    <state x="223" y="67" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1597276702324">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="223" y="67" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1536.824@0.0.1536.824" timestamp="1596850689527" />
+    <state x="223" y="67" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1536.824@0.0.1536.824" timestamp="1597276702324" />
     <state x="534" y="214" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1595539563316">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="534" y="214" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1536.824@0.0.1536.824" timestamp="1595539563316" />
-    <state x="548" y="166" key="FileChooserDialogImpl" timestamp="1595467807650">
+    <state x="548" y="166" key="FileChooserDialogImpl" timestamp="1597276749088">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="548" y="166" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1595467807650" />
-    <state x="277" y="57" key="SettingsEditor" timestamp="1595540359902">
+    <state x="548" y="166" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1597276749088" />
+    <state x="569" y="115" key="RollbackChangesDialog" timestamp="1597277134932">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="277" y="57" key="SettingsEditor/0.0.1536.824@0.0.1536.824" timestamp="1595540359902" />
+    <state x="569" y="115" key="RollbackChangesDialog/0.0.1536.824@0.0.1536.824" timestamp="1597277134932" />
+    <state x="277" y="57" key="SettingsEditor" timestamp="1597276752436">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="277" y="57" key="SettingsEditor/0.0.1536.824@0.0.1536.824" timestamp="1597276752436" />
   </component>
 </project>

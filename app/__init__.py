@@ -5,6 +5,7 @@ import os
 import logging
 from logging.handlers import RotatingFileHandler, SMTPHandler
 
+
 from flask import Flask, current_app
 from flask import request
 
@@ -16,6 +17,8 @@ from flask_login import LoginManager
 from flask_babel import Babel
 from flask_babel import lazy_gettext as _l
 from flask_bootstrap import Bootstrap
+from flask_socketio import SocketIO, emit, join_room, leave_room, \
+    close_room, rooms, disconnect
 
 from elasticsearch import Elasticsearch
 
@@ -32,6 +35,7 @@ login.login_message = _l('Please log in to access this page.')
 mail = Mail()
 bootstrap = Bootstrap()
 moment = Moment()
+socketio = SocketIO()
 
 # for generate pot: pybabel extract -F babel.cfg -k _l -o messages.pot .
 # for generate mo: pybabel init -i messages.pot -d app/translations -l <needed lang>
@@ -51,6 +55,7 @@ def create_app(config_class=Config):
     bootstrap.init_app(_app)
     moment.init_app(_app)
     babel.init_app(_app)
+    socketio.init_app(_app)
     _app.elasticsearch = Elasticsearch([_app.config['ELASTICSEARCH_URL']]) if _app.config['ELASTICSEARCH_URL'] else None
 
     # register scheme of app

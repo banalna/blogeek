@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% from 'bootstrap/form.html' import render_form %}
+
+
+
+{% block app_content %}
+
+<style>
+  .center-block {
+    margin-left: auto;
+    margin-right: auto
+  }
+  
+</style>
+
+
+<div class="container ">
+  <div class="col text-center">
+    <h3>{{ _('Send Message to %(recipient)s', recipient=recipient) }}</h3>
+  </div>
+
+  {% include '_chat.html' %}
+</div>
+
+
+{% endblock %}

@@ -1,0 +1,160 @@
+<script type="text/javascript" charset="utf-8">
+    namespace = '/chat';
+    var socket = io(namespace);;
+
+    $(document).ready(function load() {
+        if (window.location.protocol == "https:") {
+            var ws_scheme = "wss://";
+          } else {
+            var ws_scheme = "ws://"
+          };
+        socket.connect(ws_scheme + document.domain + ':' + location.port);
+        addHandlers()
+    });
+
+    function addHandlers() {
+        socket.on('connect', function () {
+            socket.emit('joined', {});
+        });
+        socket.on('status', function (data) {
+            //$('#chat').val($('#chat').val() + '<' + data.msg + '>\n');
+            $('#chat').scrollTop($('#chat')[0].scrollHeight);
+        });
+        socket.on('message', function (data) {
+            //$('#chat').val($('#chat').val() + data.msg + '\n');
+            updateMessages()
+            $('#chat').scrollTop($('#chat')[0].scrollHeight);
+        });
+
+        $('#text').keypress(function (e) {
+            var code = e.keyCode || e.which;
+            if (code == 13) {
+                send()
+            }
+        });
+
+        document.getElementById("text").focus()
+    }
+
+    function updateMessages() {
+        $.ajax({
+            type: "GET",
+            url: '{{recipient}}/chat',
+            success: function (responseHtml) {
+
+                var doc = document.getElementsByClassName('messaging')[0]
+                var temp = document.createElement('div');
+                temp.innerHTML = responseHtml;
+                var htmlObject = temp.getElementsByTagName('div')[0];
+                doc.replaceWith(htmlObject)
+                $('#chat').scrollTop($('#chat')[0].scrollHeight);
+
+                addHandlers()
+                displayTime()
+
+            }
+        }).done();
+    }
+
+    function send() {
+        text = $('#text').val();
+        $('#text').val('');
+        socket.emit('text', { msg: text, recipient: '{{recipient}}' });
+        updateMessages()
+
+    }
+
+    function leave_room() {
+        socket.emit('left', {}, function () {
+            socket.disconnect();
+
+            // go back to the login page
+            window.location.href = "{{ url_for('main.index') }}";
+        });
+    }
+
+    function displayTime(){
+        var time = moment().format('lll')
+        var ells = document.getElementsByClassName('flask-moment')
+        for (var i = 0; i < ells.length; i++) {
+            ells[i].style.display = 'contents'
+            ells[i].innerText = moment(ells[i].innerText).format('lll')
+        }
+    }
+</script>
+
+
+
+<div class="col center-block messaging">
+    <div class="overflow-auto container" id="chat" style="max-width: 90%; max-height: 55vh;">
+
+        <table class="table table-hover">
+            {% for msg in messages %}
+            <tr>
+                {% if msg.author.username != messages[messages.index(msg)-1].author.username or messages.index(msg) <= 0 %}
+                <td style="width: 30px; height:30px">
+                    <a href="{{ url_for('main.user', username=msg.author.username) }}">
+                        <img class="rounded" src="{{ msg.author.avatar(30) }}" />
+                    </a>
+                </td>
+
+                {% set user_link %}
+                <span class="user_popup lead">
+                    <a href="{{ url_for('main.user', username=msg.author.username) }}">
+                        <strong>{{ msg.author.username }}</strong>
+                    </a>
+                </span>
+                {% endset %}
+
+                {% else %}
+                <td style="width: 30px; height:30px"></td>
+                {% endif %}
+
+
+                <td>
+                    <span class="text-secondary">
+                        {{ _('%(username)s %(when)s', username=user_link, when=moment(msg.timestamp).format('lll')) }}
+                    </span>
+                    <br>
+                    <span id="msg{{ msg.id }}">{{ msg.body }}</span>
+                    {% if msg.language and msg.language != g.locale %}
+                    <br><br>
+                    <span id="translation{{ msg.id }}">
+                        <a href="javascript:translate(
+                                    '#msg{{ msg.id }}',
+                                    '#translation{{ msg.id }}',
+                                    '{{ msg.language }}',
+                                    '{{ g.locale }}');">{{ _('Translate') }}
+                        </a>
+                    </span>
+                    {% endif %}
+                </td>
+            </tr>
+            {% endfor %}
+        </table>
+
+
+    </div>
+
+    <div class="col center-block text-center" style="max-width: 90%; max-height: 50vh;">
+        <hr>
+        <!-- <h1>Flask-SocketIO-Chat: {{ room }}</h1> -->
+
+        <!-- <textarea id="chat" cols="80" rows="20"></textarea><br><br> -->
+        <div class="row center-block">
+            <div class="col-10">
+                <input class="form-control" id="text" size="80" placeholder="{{_('Enter message...')}}">
+            </div>
+            <div class="col-2">
+                <button type="submit" onclick="send();" class='mt-3 btn btn-default btn-lg'>{{_('Send')}}</button>
+            </div>
+            
+            
+        </div>
+
+
+        <!-- <a href="#" onclick="leave_room();">Leave this room</a> -->
+
+
+    </div>
+</div>

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-08-01 08:09+0300\n"
+"POT-Creation-Date: 2020-08-13 02:29+0300\n"
 "PO-Revision-Date: 2020-07-22 02:34+0300\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: ru\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.8.0\n"
 
-#: app/__init__.py:32
+#: app/__init__.py:34
 msgid "Please log in to access this page."
 msgstr "Пожалуйста, авторизируйтесь, чтобы получить доступ к этой странице."
 
@@ -96,7 +96,7 @@ msgstr "Сообщение"
 msgid "Submit"
 msgstr "Отправить"
 
-#: app/main/forms.py:18 app/main/routes.py:42 app/templates/base.html:98
+#: app/main/forms.py:18 app/main/routes.py:43 app/templates/base.html:108
 msgid "Search"
 msgstr "Поиск"
 
@@ -108,97 +108,146 @@ msgstr "Обо мне"
 msgid "Say something"
 msgstr "Расскажите что-то"
 
-#: app/main/routes.py:57
+#: app/main/routes.py:58
 msgid "Your post is now live!"
 msgstr "Опубликовано!"
 
-#: app/main/routes.py:102
+#: app/main/routes.py:103
 msgid "Your changes have been saved."
 msgstr "Ваши изменения были сохранены."
 
-#: app/main/routes.py:116 app/main/routes.py:132
+#: app/main/routes.py:118
+msgid "My followers"
+msgstr "Мои подписчики"
+
+#: app/main/routes.py:126
+msgid "My following"
+msgstr "Мои подписки"
+
+#: app/main/routes.py:134 app/main/routes.py:150
 #, python-format
 msgid "User %(username)s not found."
 msgstr "Пользователь %(username)s not found"
 
-#: app/main/routes.py:119
+#: app/main/routes.py:137
 msgid "You cannot follow yourself!"
 msgstr "Вы не можете подписаться на себя!"
 
-#: app/main/routes.py:123
+#: app/main/routes.py:141
 #, python-format
 msgid "You are following %(username)s!"
 msgstr "Вы подписались на %(username)s"
 
-#: app/main/routes.py:135
+#: app/main/routes.py:153
 msgid "You cannot unfollow yourself!"
 msgstr "Вы не можете отписаться от себя!"
 
-#: app/main/routes.py:139
+#: app/main/routes.py:157
 #, python-format
 msgid "You are not following %(username)s."
 msgstr "Вы не подписаны на %(username)s."
 
-#: app/main/routes.py:169
+#: app/main/routes.py:196
 msgid "Your message has been sent."
 msgstr "Ваше сообщение было отправлено."
 
-#: app/main/routes.py:172
+#: app/main/routes.py:199 app/main/routes.py:231 app/main/routes.py:234
 msgid "Send Message"
 msgstr "Написать"
 
-#: app/main/routes.py:195
+#: app/main/routes.py:263
 msgid "An export task is currently in progress"
-msgstr ""
+msgstr "Задача экспорта уже запущена"
 
-#: app/main/routes.py:197
+#: app/main/routes.py:265
 msgid "Exporting posts..."
+msgstr "Экспорт постов"
+
+#: app/templates/_chat.html:111 app/templates/follow.html:40
+#, python-format
+msgid "%(username)s %(when)s"
 msgstr ""
 
-#: app/templates/_post.html:16
+#: app/templates/_chat.html:122 app/templates/_post.html:26
+#: app/templates/follow.html:50 app/templates/messages.html:37
+msgid "Translate"
+msgstr "Перевести"
+
+#: app/templates/_chat.html:141
+msgid "Enter message..."
+msgstr "Введите сообщение"
+
+#: app/templates/_chat.html:144 app/templates/send_message.html:20
+msgid "Send"
+msgstr "Отправить"
+
+#: app/templates/_post.html:16 app/templates/messages.html:26
 #, python-format
 msgid "%(username)s said %(when)s"
 msgstr "%(username)s сказал(а) %(when)s"
 
-#: app/templates/_post.html:26
-msgid "Translate"
-msgstr "Перевести"
-
-#: app/templates/base.html:34
+#: app/templates/base.html:37
 msgid "Error: Could not contact server."
 msgstr "Ошибка: не удалось связаться с сервером."
 
-#: app/templates/base.html:69
+#: app/templates/base.html:79
 msgid "Welcome to "
 msgstr "Добро пожаловать в "
 
-#: app/templates/base.html:86
+#: app/templates/base.html:96
 msgid "Home"
 msgstr "Главная"
 
-#: app/templates/base.html:89
+#: app/templates/base.html:99
 msgid "Explore"
 msgstr "Лента постов"
 
-#: app/templates/base.html:106
+#: app/templates/base.html:116
 msgid "Login"
 msgstr "Войти"
 
-#: app/templates/base.html:111 app/templates/messages.html:4
+#: app/templates/base.html:121 app/templates/messages.html:5
 msgid "Messages"
 msgstr "Сообщения"
 
-#: app/templates/base.html:121
+#: app/templates/base.html:131
+msgid "Followed"
+msgstr "Подписки"
+
+#: app/templates/base.html:134
+msgid "Followers"
+msgstr "Подписчики"
+
+#: app/templates/base.html:138 app/templates/follow.html:72
 msgid "Profile"
 msgstr "Профиль"
 
-#: app/templates/base.html:125
+#: app/templates/base.html:142
 msgid "Logout"
 msgstr "Выход"
+
+#: app/templates/dialog.html:19 app/templates/send_message.html:13
+#, python-format
+msgid "Send Message to %(recipient)s"
+msgstr "Отправить сообщение %(recipient)s"
 
 #: app/templates/edit_profile.html:5
 msgid "Edit Profile"
 msgstr "Редактировать профиль"
+
+#: app/templates/follow.html:61 app/templates/user.html:54
+#: app/templates/user.html:104 app/templates/user_popup.html:23
+msgid "Follow"
+msgstr "Подписаться"
+
+#: app/templates/follow.html:66 app/templates/user.html:61
+#: app/templates/user.html:111 app/templates/user_popup.html:28
+msgid "Unfollow"
+msgstr "Отписаться"
+
+#: app/templates/follow.html:76 app/templates/send_message.html:23
+msgid "Dialog"
+msgstr "Диалог"
 
 #: app/templates/index.html:5
 #, python-format
@@ -206,20 +255,20 @@ msgid "Hi, %(username)s!"
 msgstr "Привет, %(username)s!"
 
 #: app/templates/index.html:18 app/templates/search.html:14
-#: app/templates/user.html:58
+#: app/templates/user.html:126
 msgid "Previous results"
 msgstr "Предыдущие результаты"
 
 #: app/templates/index.html:24 app/templates/search.html:20
-#: app/templates/user.html:64
+#: app/templates/user.html:132
 msgid "Next results"
 msgstr "Следующие результаты"
 
-#: app/templates/messages.html:12
+#: app/templates/messages.html:53
 msgid "Newer messages"
 msgstr "Новее сообщения"
 
-#: app/templates/messages.html:18
+#: app/templates/messages.html:59
 msgid "Older messages"
 msgstr "Старее сообщения"
 
@@ -227,48 +276,39 @@ msgstr "Старее сообщения"
 msgid "Search Results"
 msgstr "Результаты поиска"
 
-#: app/templates/send_message.html:5
-#, python-format
-msgid "Send Message to %(recipient)s"
-msgstr "Отправить сообщение %(recipient)s"
-
-#: app/templates/user.html:8
+#: app/templates/user.html:13 app/templates/user.html:75
 msgid "User"
 msgstr "Пользователь"
 
-#: app/templates/user.html:11 app/templates/user_popup.html:7
-msgid "Last seen on"
-msgstr "Последняя активность: "
-
-#: app/templates/user.html:14 app/templates/user_popup.html:10
+#: app/templates/user.html:20 app/templates/user.html:81
+#: app/templates/user_popup.html:10
 #, python-format
 msgid "%(count)d followers"
 msgstr "%(count)d подписчики"
 
-#: app/templates/user.html:15 app/templates/user_popup.html:11
+#: app/templates/user.html:21 app/templates/user.html:82
+#: app/templates/user_popup.html:11
 #, python-format
 msgid "%(count)d following"
 msgstr "%(count)d подписки"
 
-#: app/templates/user.html:20 app/templates/user_popup.html:17
+#: app/templates/user.html:26 app/templates/user.html:78
+#: app/templates/user_popup.html:7
+msgid "Last seen on"
+msgstr "Последняя активность: "
+
+#: app/templates/user.html:36 app/templates/user.html:87
+#: app/templates/user_popup.html:17
 msgid "Send message"
 msgstr "Написать"
 
-#: app/templates/user.html:25
+#: app/templates/user.html:42 app/templates/user.html:92
 msgid "Edit your profile"
 msgstr "Редактировать профиль"
 
-#: app/templates/user.html:29
+#: app/templates/user.html:46 app/templates/user.html:96
 msgid "Export your posts"
-msgstr ""
-
-#: app/templates/user.html:37 app/templates/user_popup.html:22
-msgid "Follow"
-msgstr "Подписаться"
-
-#: app/templates/user.html:44 app/templates/user_popup.html:26
-msgid "Unfollow"
-msgstr "Отписаться"
+msgstr "Экспортировать посты"
 
 #: app/templates/auth/login.html:12
 msgid "New User?"
