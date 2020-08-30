@@ -198,10 +198,10 @@ def send_message(recipient):
     return render_template('send_message.html', title=_('Send Message'), form=form, recipient=recipient)
 
 
-@bp.route('/dialog/<recipient>/chat', methods=['GET'])
+@bp.route('/dialog/<recipient>/chat/<timestamp>', methods=['GET'])
 @bp.route('/dialog/<recipient>', methods=['GET', 'POST'])
 @login_required
-def dialog(recipient):
+def dialog(recipient, timestamp=None):
     user = User.query.filter_by(username=recipient).first_or_404()
 
     current_user.last_message_read_time = datetime.utcnow()
@@ -209,9 +209,18 @@ def dialog(recipient):
     db.session.commit()
 
     page = request.args.get('page', 1, type=int)
+
+    # mind last seen message
+    if timestamp:
+        timestamp = datetime.strptime(timestamp, '%Y-%m-%d %H:%M:%S.%f')
+    else:
+        timestamp = datetime(1970, 1, 1)
+
     # get all dialog messages
     messages = Message.query.filter_by(author=user, recipient=current_user).union(
         Message.query.filter_by(author=current_user, recipient=user)
+    ).filter(
+        Message.timestamp > timestamp
     ).order_by(
         Message.timestamp.asc()).paginate(page, current_app.config['POSTS_PER_PAGE'], False)
 
